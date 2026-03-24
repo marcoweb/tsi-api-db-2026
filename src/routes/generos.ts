@@ -15,4 +15,25 @@ router.get("/", (req: Request, res: Response) => {
     });
 });
 
+router.post("/", (req: Request, res: Response) => {
+    const {nome} = req.body
+
+    db.run(
+        "INSERT INTO generos (nome) VALUES (?)",
+        [nome],
+        function (erro) {
+            if(erro) {
+                return res.status(500).json(
+                    { erro: "Erro ao cadastrar gênero." }
+                );
+            }
+
+            res.status(201).json({
+                id: this.lastID,
+                nome,
+            })
+        }
+    );
+});
+
 export default router;
