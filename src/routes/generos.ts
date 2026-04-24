@@ -1,18 +1,30 @@
 import { Router, Request, Response } from "express";
 import { db } from "../db";
-import { Genero } from "../model/genero";
+import { prisma } from "../prisma";
 
 const router = Router();
 
-router.get("/", (req: Request, res: Response) => {
-    db.all("SELECT * FROM generos", (erro, linhas) => {
-        if(erro) {
-            return res.status(500).json(
-                {erro: "Erro ao buscar gêneros"}
-            );
-        }
-        res.json(linhas);
+// router.get("/", (req: Request, res: Response) => {
+//     db.all("SELECT * FROM generos", (erro, linhas) => {
+//         if(erro) {
+//             return res.status(500).json(
+//                 {erro: "Erro ao buscar gêneros"}
+//             );
+//         }
+//         res.json(linhas);
+//     });
+// });
+
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const generos = await prisma.genero.findMany();
+
+    res.json(generos);
+  } catch (error) {
+    res.status(500).json({
+      erro: "Erro ao buscar gêneros"
     });
+  }
 });
 
 router.post("/", (req: Request, res: Response) => {
