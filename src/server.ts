@@ -3,7 +3,7 @@ import "./db"
 import generosRouter from "./routes/generos";
 
 const app = express();
-const PORT = 3000;
+const PORT = 3003;
 
 app.use(express.json());
 

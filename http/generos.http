@@ -1,4 +1,4 @@
-@url = http://localhost:3000/generos
+@url = http://localhost:3003/generos
 
 GET {{url}}
 

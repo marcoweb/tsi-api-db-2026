@@ -22,8 +22,10 @@
   "homepage": "https://github.com/marcoweb/tsi-api-db-2026#readme",
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
     "@types/sqlite3": "^3.1.11",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.2"
   },
   "dependencies": {
